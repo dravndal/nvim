@@ -72,4 +72,17 @@ require('packer').startup(function(use)
         use 'mfussenegger/nvim-dap'
         use { 'theHamsta/nvim-dap-virtual-text', requires = { "mfussenegger/nvim-dap" }, }
         use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+        use { "folke/noice.nvim", event = "VimEnter", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } }
+        use({
+          "folke/noice.nvim",
+          event = "VimEnter",
+          config = function()
+            require("noice").setup()
+          end,
+          requires = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+            }
+        })
 end)
