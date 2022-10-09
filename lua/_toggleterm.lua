@@ -34,22 +34,10 @@ require("toggleterm").setup{
 --Toggleterm for floating terminals with different cmd's attached
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ count = 2, cmd = "lazygit", hidden = true, direction = "float" })
-local spotify = Terminal:new({ count = 3, cmd = "spt", hidden = true, direction = "float"})
 
 function _lazygit_toggle()
   lazygit:toggle()
 end
-
-function _spotify_toggle()
-    spotify:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>spt", "<cmd>lua _spotify_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<F6>", ":3TermExec cmd='spt playback --toggle' open=0<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<F7>", ":3TermExec cmd='spt playback --next' open=0<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<F5>", ":3TermExec cmd='spt playback --previous' open=0<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<F8>", ":3TermExec cmd='spt playback --shuffle' open=0<CR>", {noremap = true, silent = true})
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}

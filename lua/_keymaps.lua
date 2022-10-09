@@ -12,6 +12,9 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 --General keymaps
 vim.keymap.set('n', '<C-q>', ':q!<CR>')
 vim.keymap.set('n', '<A-q>', ':bd<CR>')
+vim.keymap.set('n', '<A-q>', ':bd<CR>')
+vim.keymap.set('n', '<tab>', ':bNext<CR>', { silent = true })
+vim.keymap.set('n', '<s-tab>', ':bprevious<CR>', { silent= true})
 vim.keymap.set('n', '<C-P>', ':call PhpDocSingle()<CR>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -27,6 +30,7 @@ vim.keymap.set('v', '<C-P>', ':call PhpDocRange()<CR>')
 -- Search/replace 
 vim.keymap.set('n', '<c-w><c-r>', ':%s/<c-r><c-w>//g<left><left>')
 vim.keymap.set('n', 'rn', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
+vim.keymap.set('n', '<leader>_', ':noh<CR>', { silent = true })
 
 -- Clipboard
 vim.keymap.set('n', '<leader>y', '\"+y')
@@ -51,6 +55,9 @@ vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
 vim.keymap.set('n', '<leader>gd', ':Gvdiffsplit<CR>')
 vim.keymap.set('n', '<leader>ga', ':Git fetch --all<CR>')
 
+-- Toggleterm
+vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
 
 -- Telescope
 vim.keymap.set('n', '<leader><space>', function()
@@ -70,3 +77,11 @@ vim.api.nvim_set_keymap(
         ":Telescope file_browser <CR>",
         { noremap = true }
 )
+
+-- DAP
+vim.keymap.set('n', '<F3>', ":lua require'dapui'.toggle()<CR>", {silent=true})
+vim.keymap.set('n', '<F4>', ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set('n', '<F5>', ":lua require'dap'.continue()<CR>")
+vim.keymap.set('n', '<F6>', ":lua require'dap'.step_over()<CR>")
+vim.keymap.set('n', '<F7>', ":lua require'dap'.step_into()<CR>")
+vim.keymap.set('n', '<F8>', ":lua require'dap'.step_out()<CR>")

@@ -72,7 +72,7 @@ require('packer').startup(function(use)
         use 'mfussenegger/nvim-dap'
         use { 'theHamsta/nvim-dap-virtual-text', requires = { "mfussenegger/nvim-dap" }, }
         use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-        use { "folke/noice.nvim", event = "VimEnter", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } }
+        use { "nvim-telescope/telescope-dap.nvim"}
         use({
           "folke/noice.nvim",
           event = "VimEnter",
@@ -83,6 +83,7 @@ require('packer').startup(function(use)
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
-            }
+          }
         })
+        use "lukas-reineke/indent-blankline.nvim"
 end)
