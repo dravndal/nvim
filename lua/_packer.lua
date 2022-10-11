@@ -53,7 +53,6 @@ require('packer').startup(function(use)
         use 'NvChad/nvim-colorizer.lua'
         use 'dravndal/vim-arsync' --fork this
         use 'jose-elias-alvarez/null-ls.nvim'
-        use 'dravndal/php-doc-modded' --fork this
 
         use({
               "kylechui/nvim-surround",
@@ -86,4 +85,13 @@ require('packer').startup(function(use)
           }
         })
         use "lukas-reineke/indent-blankline.nvim"
+        use {
+            "danymat/neogen",
+            config = function()
+                require('neogen').setup {}
+            end,
+            requires = "nvim-treesitter/nvim-treesitter",
+            -- Uncomment next line if you want to follow only stable versions
+            -- tag = "*"
+        }
 end)
