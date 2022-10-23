@@ -94,4 +94,18 @@ require('packer').startup(function(use)
             -- Uncomment next line if you want to follow only stable versions
             -- tag = "*"
         }
+        use "ggandor/leap.nvim"
+        use "ggandor/flit.nvim"
+        use "ray-x/lsp_signature.nvim"
+        use 'andymass/vim-matchup'
+        -- Lua
+        use({
+          "folke/persistence.nvim",
+          event = "BufReadPre", -- this will only start session saving when an actual file was opened
+          module = "persistence",
+          config = function()
+            require("persistence").setup()
+          end,
+        })
+        use "theprimeagen/harpoon"
 end)

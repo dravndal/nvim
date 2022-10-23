@@ -1,5 +1,9 @@
 -- LSP settings
 local lspconfig = require 'lspconfig'
+local signature_setup = {
+        floating_window = false,
+        timer_interval = 10,
+}
 local on_attach = function(_, bufnr)
         local opts = { buffer = bufnr }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -13,6 +17,7 @@ local on_attach = function(_, bufnr)
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
         vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+        require "lsp_signature".setup(signature_setup, bufnr)
 end
 
 
@@ -77,3 +82,10 @@ lspconfig.sumneko_lua.setup {
                 },
         },
 }
+
+require "lsp_signature".setup({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {
+                border = "rounded"
+        }
+})

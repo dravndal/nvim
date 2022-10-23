@@ -8,5 +8,15 @@ require("null-ls").setup({
               "--standard=ruleset.xml"
             }
         }),
+        require("null-ls").register(require("null-ls").builtins.diagnostics.psalm.with({
+            condition = function(utils)
+              return utils.root_has_file("psalm.xml")
+            end,
+        })),
+        require("null-ls").register(require("null-ls").builtins.diagnostics.phpstan.with({
+            condition = function(utils)
+              return utils.root_has_file("phpstan.neon")
+            end,
+        })),
     },
 })
