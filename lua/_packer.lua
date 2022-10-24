@@ -65,7 +65,6 @@ require('packer').startup(function(use)
         })
         -- using packer.nvim
         use { "akinsho/toggleterm.nvim", tag = '*' }
-        use { 'kosayoda/nvim-lightbulb', requires = 'antoinemadec/FixCursorHold.nvim' }
         -- using packer.nvim
         use { 'nmac427/guess-indent.nvim', config = function() require('guess-indent').setup {} end, }
         use 'mfussenegger/nvim-dap'
@@ -108,4 +107,14 @@ require('packer').startup(function(use)
           end,
         })
         use "theprimeagen/harpoon"
+        use({
+            "glepnir/lspsaga.nvim",
+            branch = "main",
+            config = function()
+                local saga = require("lspsaga")
+
+                saga.init_lsp_saga({
+                })
+            end,
+        })
 end)
