@@ -63,7 +63,7 @@ vim.o.splitright = true;
 
 -- Lua
 -- vim.g.tokyodark_color_gamma = "0.8"
-vim.cmd[[colorscheme noctis]]
+vim.cmd[[colorscheme tokyodark]]
 
 --Indents
 -- vim.cmd([[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])

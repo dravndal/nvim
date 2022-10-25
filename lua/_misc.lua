@@ -8,6 +8,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         pattern = '*',
 })
 
+vim.api.nvim_create_autocmd('BufReadPre', { command = [[:syntax on]] })
+
 local signs = {
     Error = "🦀",
     Warning = "🦞",

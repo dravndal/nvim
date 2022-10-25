@@ -117,4 +117,5 @@ require('packer').startup(function(use)
                 })
             end,
         })
+        use 'folke/lsp-colors.nvim'
 end)
