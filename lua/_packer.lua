@@ -33,7 +33,7 @@ require('packer').startup(function(use)
         use 'williamboman/mason.nvim'                                             -- Manage external editor tooling i.e LSP servers
         use 'williamboman/mason-lspconfig.nvim'                                   -- Automatically install language servers to stdpath
         use 'tiagovla/tokyodark.nvim'
-        use { 'kartikp10/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
+        use { 'dravndal/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
 
         use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }         -- Autocompletion
         use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }     -- Snippet Engine and Snippet Expansion
@@ -65,25 +65,24 @@ require('packer').startup(function(use)
         })
         -- using packer.nvim
         use { "akinsho/toggleterm.nvim", tag = '*' }
-        use { 'kosayoda/nvim-lightbulb', requires = 'antoinemadec/FixCursorHold.nvim' }
         -- using packer.nvim
         use { 'nmac427/guess-indent.nvim', config = function() require('guess-indent').setup {} end, }
         use 'mfussenegger/nvim-dap'
         use { 'theHamsta/nvim-dap-virtual-text', requires = { "mfussenegger/nvim-dap" }, }
         use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
         use { "nvim-telescope/telescope-dap.nvim"}
-        use({
-          "folke/noice.nvim",
-          event = "VimEnter",
-          config = function()
-            require("noice").setup()
-          end,
-          requires = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-          }
-        })
+        -- use({
+        --   "folke/noice.nvim",
+        --   event = "VimEnter",
+        --   config = function()
+        --     require("noice").setup()
+        --   end,
+        --   requires = {
+        --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        --     "MunifTanjim/nui.nvim",
+        --     "rcarriga/nvim-notify",
+        --   }
+        -- })
         use "lukas-reineke/indent-blankline.nvim"
         use {
             "danymat/neogen",
@@ -94,4 +93,29 @@ require('packer').startup(function(use)
             -- Uncomment next line if you want to follow only stable versions
             -- tag = "*"
         }
+        use "ggandor/leap.nvim"
+        use "ggandor/flit.nvim"
+        use "ray-x/lsp_signature.nvim"
+        use 'andymass/vim-matchup'
+        -- Lua
+        use({
+          "folke/persistence.nvim",
+          event = "BufReadPre", -- this will only start session saving when an actual file was opened
+          module = "persistence",
+          config = function()
+            require("persistence").setup()
+          end,
+        })
+        use "theprimeagen/harpoon"
+        use({
+            "glepnir/lspsaga.nvim",
+            branch = "main",
+            config = function()
+                local saga = require("lspsaga")
+
+                saga.init_lsp_saga({
+                })
+            end,
+        })
+        use 'folke/lsp-colors.nvim'
 end)

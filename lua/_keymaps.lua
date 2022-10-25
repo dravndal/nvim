@@ -64,7 +64,7 @@ vim.keymap.set('n', '<leader><space>', function()
         require('telescope.builtin').find_files { previewer = false, hidden = true }
 end)
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').current_buffer_fuzzy_find)
-vim.keymap.set('n', '<leader>h', require('telescope.builtin').help_tags)
+vim.keymap.set('n', '<leader>hh', require('telescope.builtin').help_tags)
 vim.keymap.set('n', '<leader>w', require('telescope.builtin').grep_string)
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>so', function()
@@ -85,3 +85,28 @@ vim.keymap.set('n', '<F5>', ":lua require'dap'.continue()<CR>")
 vim.keymap.set('n', '<F6>', ":lua require'dap'.step_over()<CR>")
 vim.keymap.set('n', '<F7>', ":lua require'dap'.step_into()<CR>")
 vim.keymap.set('n', '<F8>', ":lua require'dap'.step_out()<CR>")
+
+
+-- restore the session for the current directory
+vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+
+-- restore the last session
+vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
+
+-- stop Persistence => session won't be saved on exit
+vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+
+-- Harpoon
+vim.keymap.set('n', '<leader>ha', ":lua require('harpoon.mark').add_file()<CR>")
+vim.keymap.set('n', '<leader>ho', ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
+vim.keymap.set('n', '<leader>h1', ":lua require('harpoon.ui').nav_file(1)<CR>")
+vim.keymap.set('n', '<leader>h2', ":lua require('harpoon.ui').nav_file(2)<CR>")
+vim.keymap.set('n', '<leader>h3', ":lua require('harpoon.ui').nav_file(3)<CR>")
+vim.keymap.set('n', '<leader>h4', ":lua require('harpoon.ui').nav_file(4)<CR>")
+vim.keymap.set('n', '<leader>h5', ":lua require('harpoon.ui').nav_file(5)<CR>")
+vim.keymap.set('n', '<leader>h6', ":lua require('harpoon.ui').nav_file(6)<CR>")
+vim.keymap.set('n', '<leader>h7', ":lua require('harpoon.ui').nav_file(7)<CR>")
+vim.keymap.set('n', '<leader>h8', ":lua require('harpoon.ui').nav_file(8)<CR>")
+vim.keymap.set('n', '<leader>h9', ":lua require('harpoon.ui').nav_file(9)<CR>")
+vim.keymap.set('n', '<leader>hn', ":lua require('harpoon.ui').nav_next()<CR>")
+vim.keymap.set('n', '<leader>hp', ":lua require('harpoon.ui').nav_prev()<CR>")
