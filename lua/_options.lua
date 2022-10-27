@@ -62,9 +62,7 @@ vim.o.splitbelow = true;
 vim.o.splitright = true;
 
 -- Lua
--- vim.g.tokyodark_color_gamma = "0.8"
-vim.cmd[[colorscheme tokyodark]]
-
+vim.cmd[[colorscheme kimbox]]
 --Indents
 -- vim.cmd([[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])
 vim.cmd([[ autocmd FileType lua setlocal shiftwidth=4 tabstop=4 softtabstop=4 ]])

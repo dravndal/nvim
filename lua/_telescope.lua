@@ -26,3 +26,5 @@ require('telescope').load_extension 'fzf'
 -- Enable telescope file browser
 require('telescope').load_extension 'file_browser'
 
+-- Enable telescope project
+require('telescope').load_extension 'project'

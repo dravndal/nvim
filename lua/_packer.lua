@@ -17,6 +17,7 @@ require('packer').startup(function(use)
         use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
         use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
         use { 'nvim-telescope/telescope-file-browser.nvim' }
+        use { 'nvim-telescope/telescope-project.nvim' }
         use 'nvim-lualine/lualine.nvim' -- Fancier statusline
         -- Add git related info in the signs columns and popups
         use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -33,6 +34,10 @@ require('packer').startup(function(use)
         use 'williamboman/mason.nvim'                                             -- Manage external editor tooling i.e LSP servers
         use 'williamboman/mason-lspconfig.nvim'                                   -- Automatically install language servers to stdpath
         use 'tiagovla/tokyodark.nvim'
+        use { "ellisonleao/gruvbox.nvim" }
+        use "rafamadriz/neon"
+        use({ "lmburns/kimbox", config = [[require("kimbox").load()]] })
+        use { 'Everblush/everblush.nvim', as = 'everblush' }
         use { 'dravndal/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
 
         use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }         -- Autocompletion

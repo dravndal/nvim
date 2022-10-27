@@ -77,6 +77,7 @@ vim.api.nvim_set_keymap(
         ":Telescope file_browser <CR>",
         { noremap = true }
 )
+vim.keymap.set('n', '<leader>p', ':Telescope project <CR>')
 
 -- DAP
 vim.keymap.set('n', '<F3>', ":lua require'dapui'.toggle()<CR>", {silent=true})
@@ -99,14 +100,16 @@ vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").sto
 -- Harpoon
 vim.keymap.set('n', '<leader>ha', ":lua require('harpoon.mark').add_file()<CR>")
 vim.keymap.set('n', '<leader>ho', ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
-vim.keymap.set('n', '<leader>h1', ":lua require('harpoon.ui').nav_file(1)<CR>")
-vim.keymap.set('n', '<leader>h2', ":lua require('harpoon.ui').nav_file(2)<CR>")
-vim.keymap.set('n', '<leader>h3', ":lua require('harpoon.ui').nav_file(3)<CR>")
-vim.keymap.set('n', '<leader>h4', ":lua require('harpoon.ui').nav_file(4)<CR>")
-vim.keymap.set('n', '<leader>h5', ":lua require('harpoon.ui').nav_file(5)<CR>")
-vim.keymap.set('n', '<leader>h6', ":lua require('harpoon.ui').nav_file(6)<CR>")
-vim.keymap.set('n', '<leader>h7', ":lua require('harpoon.ui').nav_file(7)<CR>")
-vim.keymap.set('n', '<leader>h8', ":lua require('harpoon.ui').nav_file(8)<CR>")
-vim.keymap.set('n', '<leader>h9', ":lua require('harpoon.ui').nav_file(9)<CR>")
+vim.keymap.set('n', '<C-1>', ":lua require('harpoon.ui').nav_file(1)<CR>")
+vim.keymap.set('n', '<C-2>', ":lua require('harpoon.ui').nav_file(2)<CR>")
+vim.keymap.set('n', '<C-3>', ":lua require('harpoon.ui').nav_file(3)<CR>")
+vim.keymap.set('n', '<C-4>', ":lua require('harpoon.ui').nav_file(4)<CR>")
+vim.keymap.set('n', '<C-5>', ":lua require('harpoon.ui').nav_file(5)<CR>")
+vim.keymap.set('n', '<C-6>', ":lua require('harpoon.ui').nav_file(6)<CR>")
+vim.keymap.set('n', '<C-7>', ":lua require('harpoon.ui').nav_file(7)<CR>")
+vim.keymap.set('n', '<C-8>', ":lua require('harpoon.ui').nav_file(8)<CR>")
+vim.keymap.set('n', '<C-9>', ":lua require('harpoon.ui').nav_file(9)<CR>")
 vim.keymap.set('n', '<leader>hn', ":lua require('harpoon.ui').nav_next()<CR>")
 vim.keymap.set('n', '<leader>hp', ":lua require('harpoon.ui').nav_prev()<CR>")
+vim.keymap.set('i', '<c-e>', '<esc>A', {noremap = true})
+vim.keymap.set('i', '<c-b>', '<esc>I', {noremap = true})
