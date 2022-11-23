@@ -10,13 +10,18 @@ require('telescope').setup {
                         i = {
                                 ['<C-u>'] = false,
                                 ['<C-d>'] = false,
+                                ['<C-h>'] = require'telescope'.extensions.send_to_harpoon.actions.send_selected_to_harpoon,
                         },
+                        n = {
+                                ['<C-h>'] = require'telescope'.extensions.send_to_harpoon.actions.send_selected_to_harpoon,
+                        }
                 },
         },
         pickers = {
                 find_files = {
                         hidden = true,
-                }
+                        theme = "ivy",
+                },
         }
 }
 
@@ -28,3 +33,6 @@ require('telescope').load_extension 'file_browser'
 
 -- Enable telescope project
 require('telescope').load_extension 'project'
+
+-- Enable telescope harpon
+require('telescope').load_extension 'send_to_harpoon'

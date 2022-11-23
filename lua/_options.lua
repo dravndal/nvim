@@ -40,7 +40,6 @@ vim.o.smartcase = true
 
 --Decrease update time
 vim.o.updatetime = 100
-vim.wo.signcolumn = 'yes'
 
 vim.opt.scrolloff = 10
 vim.opt.swapfile = false
@@ -62,12 +61,43 @@ vim.o.splitbelow = true;
 vim.o.splitright = true;
 
 -- Lua
-vim.cmd[[colorscheme kimbox]]
---Indents
--- vim.cmd([[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])
-vim.cmd([[ autocmd FileType lua setlocal shiftwidth=4 tabstop=4 softtabstop=4 ]])
--- vim.cmd([[ autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])
--- vim.cmd([[ autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4 ]])
--- vim.cmd([[ autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])
--- vim.cmd([[ autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]])
--- vim.cmd([[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]])
+require('kanagawa').setup({
+    undercurl = true,
+    commentStyle = { italic = true },
+    functionStyle = {},
+    keywordStyle = { italic = false},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = true,        -- do not set background color
+    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+    globalStatus = false,       -- adjust window separators highlight for laststatus=3
+    terminalColors = true,      -- define vim.g.terminal_color_{0,17}
+    colors = {},
+    overrides = {
+        ['@method'] = { fg = "#FF9E3B"},
+        ['@keyword.function'] = { fg = "#7E9CD8"},
+        ['@variable'] = { fg = "#9CABCA"},
+        ['@constructor'] = { fg = "#DCA561"},
+        ['Visual'] = { bg = "#6A9589"},
+    },
+    theme = "default"           -- Load "default" theme or the experimental "light" theme
+})
+vim.o.background = "dark"
+-- vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme kanagawa")
+
+-- require('vscode').setup({
+--     -- Enable transparent background
+--     transparent = true,
+--
+--     -- Enable italic comment
+--     italic_comments = true,
+--
+--     -- Disable nvim-tree background color
+--     disable_nvimtree_bg = true,
+--
+--     -- Override colors (see ./lua/vscode/colors.lua)
+--     color_overrides = {
+--         vscLineNumber = '#FFFFFF',
+--     },
+-- })

@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd('BufWritePost',
 
 require('packer').startup(function(use)
         use 'wbthomason/packer.nvim' -- Package manager
-        use 'tpope/vim-fugitive' -- Git commands in nvim
         use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
         -- UI to select things (files, grep results, open buffers...)
         use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -23,6 +22,7 @@ require('packer').startup(function(use)
         use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
         -- Highlight, edit, and navigate code using a fast incremental parsing library
         use 'nvim-treesitter/nvim-treesitter'
+        use 'nvim-treesitter/playground'
         -- Additional textobjects for treesitter
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use({
@@ -31,19 +31,14 @@ require('packer').startup(function(use)
                 require("textobj-diagnostic").setup()
             end,
         })
-        use 'williamboman/mason.nvim'                                             -- Manage external editor tooling i.e LSP servers
-        use 'williamboman/mason-lspconfig.nvim'                                   -- Automatically install language servers to stdpath
-        use 'tiagovla/tokyodark.nvim'
+        use 'williamboman/mason.nvim'
+        use 'williamboman/mason-lspconfig.nvim'
         use { "ellisonleao/gruvbox.nvim" }
-        use "rafamadriz/neon"
-        use({ "lmburns/kimbox", config = [[require("kimbox").load()]] })
-        use { 'Everblush/everblush.nvim', as = 'everblush' }
-        use { 'dravndal/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
-
+        use 'Mofiqul/vscode.nvim'
+        use "rebelot/kanagawa.nvim"
         use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }         -- Autocompletion
         use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }     -- Snippet Engine and Snippet Expansion
-        use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons', 'BlakeJC94/alpha-nvim-fortune' }}
-
+        use { 'rafamadriz/friendly-snippets' }
         use {
                 "windwp/nvim-autopairs",
                 config = function() require("nvim-autopairs").setup {
@@ -52,13 +47,10 @@ require('packer').startup(function(use)
         }
         use 'windwp/nvim-ts-autotag'
         use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-        use 'onsails/lspkind.nvim'
         use 'kyazdani42/nvim-web-devicons'
-        use 'xiyaowong/nvim-transparent'
         use 'NvChad/nvim-colorizer.lua'
-        use 'dravndal/vim-arsync' --fork this
+        use 'dravndal/vim-arsync'
         use 'jose-elias-alvarez/null-ls.nvim'
-
         use({
               "kylechui/nvim-surround",
               tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -68,26 +60,6 @@ require('packer').startup(function(use)
                   })
                 end
         })
-        -- using packer.nvim
-        use { "akinsho/toggleterm.nvim", tag = '*' }
-        -- using packer.nvim
-        use { 'nmac427/guess-indent.nvim', config = function() require('guess-indent').setup {} end, }
-        use 'mfussenegger/nvim-dap'
-        use { 'theHamsta/nvim-dap-virtual-text', requires = { "mfussenegger/nvim-dap" }, }
-        use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-        use { "nvim-telescope/telescope-dap.nvim"}
-        -- use({
-        --   "folke/noice.nvim",
-        --   event = "VimEnter",
-        --   config = function()
-        --     require("noice").setup()
-        --   end,
-        --   requires = {
-        --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-        --     "MunifTanjim/nui.nvim",
-        --     "rcarriga/nvim-notify",
-        --   }
-        -- })
         use "lukas-reineke/indent-blankline.nvim"
         use {
             "danymat/neogen",
@@ -98,29 +70,18 @@ require('packer').startup(function(use)
             -- Uncomment next line if you want to follow only stable versions
             -- tag = "*"
         }
-        use "ggandor/leap.nvim"
-        use "ggandor/flit.nvim"
         use "ray-x/lsp_signature.nvim"
         use 'andymass/vim-matchup'
-        -- Lua
-        use({
-          "folke/persistence.nvim",
-          event = "BufReadPre", -- this will only start session saving when an actual file was opened
-          module = "persistence",
-          config = function()
-            require("persistence").setup()
-          end,
-        })
         use "theprimeagen/harpoon"
+        use 'asbjornhaland/telescope-send-to-harpoon.nvim'
+        use {'https://gitlab.com/madyanov/svart.nvim'}
         use({
             "glepnir/lspsaga.nvim",
             branch = "main",
             config = function()
                 local saga = require("lspsaga")
-
                 saga.init_lsp_saga({
                 })
             end,
         })
-        use 'folke/lsp-colors.nvim'
 end)

@@ -12,13 +12,11 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 --General keymaps
 vim.keymap.set('n', '<C-q>', ':q!<CR>')
 vim.keymap.set('n', '<A-q>', ':bd<CR>')
-vim.keymap.set('n', '<A-q>', ':bd<CR>')
 vim.keymap.set('n', '<tab>', ':bNext<CR>', { silent = true })
 vim.keymap.set('n', '<s-tab>', ':bprevious<CR>', { silent= true})
 vim.keymap.set('n', '<C-P>', ':Neogen <CR>', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', '<F10>', ':TransparentToggle<CR>')
 
 --For moving lines up and down
 vim.keymap.set('v', '<C-J>', ':m \'>+1<CR>gv=gv')
@@ -43,20 +41,13 @@ vim.keymap.set('n', 'yp', 'vi)y')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', ';D', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ',d', vim.diagnostic.goto_next)
+
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
--- Fugitive
-vim.keymap.set('n', '<leader>gl', ':Gclog!<CR>')
-vim.keymap.set('n', '<leader>gg', ':G<CR>')
-vim.keymap.set('n', '<leader>gC', 'BCommits<CR>')
-vim.keymap.set('n', '<leader>gb', ':Git blame<CR>')
-vim.keymap.set('n', '<leader>gd', ':Gvdiffsplit<CR>')
-vim.keymap.set('n', '<leader>ga', ':Git fetch --all<CR>')
-
--- Toggleterm
-vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+-- Git Signs
+vim.keymap.set('n', '<leader>gb', ":Gitsigns toggle_current_line_blame <CR>", {silent=true})
 
 
 -- Telescope
@@ -79,24 +70,6 @@ vim.api.nvim_set_keymap(
 )
 vim.keymap.set('n', '<leader>p', ':Telescope project <CR>')
 
--- DAP
-vim.keymap.set('n', '<F3>', ":lua require'dapui'.toggle()<CR>", {silent=true})
-vim.keymap.set('n', '<F4>', ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set('n', '<F5>', ":lua require'dap'.continue()<CR>")
-vim.keymap.set('n', '<F6>', ":lua require'dap'.step_over()<CR>")
-vim.keymap.set('n', '<F7>', ":lua require'dap'.step_into()<CR>")
-vim.keymap.set('n', '<F8>', ":lua require'dap'.step_out()<CR>")
-
-
--- restore the session for the current directory
-vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
-
--- restore the last session
-vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
-
--- stop Persistence => session won't be saved on exit
-vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
-
 -- Harpoon
 vim.keymap.set('n', '<leader>ha', ":lua require('harpoon.mark').add_file()<CR>")
 vim.keymap.set('n', '<leader>ho', ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
@@ -113,3 +86,29 @@ vim.keymap.set('n', '<leader>hn', ":lua require('harpoon.ui').nav_next()<CR>")
 vim.keymap.set('n', '<leader>hp', ":lua require('harpoon.ui').nav_prev()<CR>")
 vim.keymap.set('i', '<c-e>', '<esc>A', {noremap = true})
 vim.keymap.set('i', '<c-b>', '<esc>I', {noremap = true})
+
+-- Svart
+vim.keymap.set({ "n", "x", "o" }, "s", "<Cmd>Svart<CR>")        -- begin exact search
+vim.keymap.set({ "n", "x", "o" }, "S", "<Cmd>SvartRegex<CR>")   -- begin regex search
+vim.keymap.set({ "n", "x", "o" }, "gs", "<Cmd>SvartRepeat<CR>") -- repeat with last accepted query
+
+-- Multiple cursors
+vim.cmd([[
+    let g:mc = "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>"
+
+    nnoremap cn *``cgn
+    nnoremap cN *``cgN
+
+    vnoremap <expr> cn g:mc . "``cgn"
+    vnoremap <expr> cN g:mc . "``cgN"
+
+    function! SetupCR()
+      nnoremap <Enter> :nnoremap <lt>Enter> n@z<CR>q:<C-u>let @z=strpart(@z,0,strlen(@z)-1)<CR>n@z
+    endfunction
+
+    nnoremap cq :call SetupCR()<CR>*``qz
+    nnoremap cQ :call SetupCR()<CR>#``qz
+
+    vnoremap <expr> cq ":\<C-u>call SetupCR()\<CR>" . "gv" . g:mc . "``qz"
+    vnoremap <expr> cQ ":\<C-u>call SetupCR()\<CR>" . "gv" . substitute(g:mc, '/', '?', 'g') . "``qz"
+]])
