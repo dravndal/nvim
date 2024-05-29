@@ -62,7 +62,6 @@ return {
 			vim.keymap.set("n", "<leader>sf", builtin.live_grep, { desc = "Search by Grep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-			vim.keymap.set("n", "<leader>so", builtin.lsp_document_symbols, { desc = "Search symbols" })
 			vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader>l", builtin.buffers, { desc = "[ ] Find existing buffers" })
 

@@ -13,8 +13,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Buffers
 vim.keymap.set("n", "<A-q>", ":bd<CR>")
-vim.keymap.set("n", "<tab>", ":bNext<CR>", { silent = true })
-vim.keymap.set("n", "<S-tab>", ":bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<leader>fb", ":Oil --float<CR>", { silent = true })
 
 -- Sanity
