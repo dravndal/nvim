@@ -26,8 +26,8 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Background "plugin"
-vim.keymap.set("n", "<F8>", ":lua require('util.background').getBackground()<CR>")
-vim.keymap.set("n", "<F9>", ":lua require('util.background').changeBackground()<CR>")
+vim.keymap.set("n", "<F8>", ":lua require('custom.utils.background').getBackground()<CR>")
+vim.keymap.set("n", "<F9>", ":lua require('custom.utils.background').changeBackground()<CR>")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
