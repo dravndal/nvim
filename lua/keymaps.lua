@@ -24,6 +24,8 @@ vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("n", "<Tab>", "gt");
+vim.keymap.set("n", "<S-Tab>", "gT");
 
 -- Background "plugin"
 vim.keymap.set("n", "<F8>", ":lua require('custom.utils.background').getBackground()<CR>")
