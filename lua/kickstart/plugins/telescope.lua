@@ -40,7 +40,13 @@ return {
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
-				-- pickers = {}
+				pickers = {
+          find_files = {
+            path_display = {
+              "filename_first",
+            },
+          },
+        },
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
