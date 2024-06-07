@@ -24,8 +24,8 @@ vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("n", "<Tab>", "gt");
-vim.keymap.set("n", "<S-Tab>", "gT");
+vim.keymap.set("n", "<Tab>", ":bnext<CR>");
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>");
 
 -- Background "plugin"
 vim.keymap.set("n", "<F8>", ":lua require('custom.utils.background').getBackground()<CR>")
@@ -107,6 +107,13 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
 	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(ctx)
+    local root = vim.fs.root(ctx.buf, {".git", "Makefile"})
+    if root then vim.uv.chdir(root) end
+  end,
 })
 
 vim.cmd([[
