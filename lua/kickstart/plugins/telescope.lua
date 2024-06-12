@@ -9,7 +9,7 @@ return {
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
-		branch = "0.1.x",
+		branch = "master",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -36,7 +36,7 @@ return {
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				defaults = {
-          file_ignore_patterns = { "node_modules", "vendor", ".git", "build", "html" },
+          file_ignore_patterns = { "node_modules", "vendor", ".git", "build", "html/" },
 				},
 				pickers = {
           find_files = {

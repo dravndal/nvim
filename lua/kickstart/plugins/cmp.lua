@@ -56,13 +56,6 @@ return {
 						ellipsis_char = "...",
 					}),
 				},
-				duplicates = {
-					nvim_lsp = 1,
-					luasnip = 1,
-					cmp_tabnine = 1,
-					buffer = 1,
-					path = 1,
-				},
 				confirm_opts = {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
@@ -91,11 +84,6 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					--['<Tab>'] = cmp.mapping.select_next_item(),
 					--['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
-					-- Manually trigger a completion from nvim-cmp.
-					--  Generally you don't need this, because nvim-cmp will display
-					--  completions whenever it has completion options available.
-					["<C-Space>"] = cmp.mapping.complete({}),
 
 					-- Think of <c-l> as moving to the right of your snippet expansion.
 					--  So if you have a snippet that's like:

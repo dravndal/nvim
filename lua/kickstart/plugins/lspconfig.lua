@@ -5,10 +5,6 @@ return {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			{ "williamboman/mason.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-			{ "j-hui/fidget.nvim", opts = {} },
-			{ "folke/neodev.nvim", opts = {} },
 			{
 				"onsails/lspkind.nvim",
 				event = "LspAttach",
@@ -96,8 +92,6 @@ return {
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
@@ -151,9 +145,13 @@ return {
 		end,
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons" },
-			--Please make sure you install markdown and markdown_inline parser
-			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	},
+  {
+    "ray-x/lsp_signature.nvim",
+     event = "VeryLazy",
+     opts = {},
+     config = function(_, opts) require'lsp_signature'.setup(opts) end
+  }
 }
 -- vim: ts=2 sts=2 sw=2 et
