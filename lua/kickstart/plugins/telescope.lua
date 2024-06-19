@@ -37,6 +37,9 @@ return {
 				--
 				defaults = {
           file_ignore_patterns = { "node_modules", "vendor", ".git", "build", "html/" },
+          path_display = {
+            "filename_first",
+          },
 				},
 				pickers = {
           find_files = {
