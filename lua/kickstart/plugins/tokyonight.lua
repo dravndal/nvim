@@ -8,6 +8,10 @@ return {
 		end,
 		opts = {
 			transparent = true,
+
+			on_colors = function(colors)
+				colors.bg_float = "none"
+			end
 		}
 	},
 }

@@ -18,18 +18,18 @@ return {
 		config = function()
 			require("telescope").setup({
 				defaults = {
-          file_ignore_patterns = { "node_modules", "vendor", ".git", "build", "html/" },
-          path_display = {
-            "filename_first",
-          },
+					file_ignore_patterns = { "node_modules", "vendor", ".git", "build", "html/" },
+					path_display = {
+						"filename_first",
+					},
 				},
 				pickers = {
-          find_files = {
-            path_display = {
-              "filename_first",
-            },
-          },
-        },
+					find_files = {
+						path_display = {
+							"filename_first",
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),

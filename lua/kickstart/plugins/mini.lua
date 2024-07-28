@@ -21,6 +21,24 @@ return {
     version = false,
     opts = {},
   },
+  {
+    "echasnovski/mini.completion",
+    version = false,
+    opts = {
+      delay = {
+        completion = 10^7,
+        info = 10^7,
+        signature = 100,
+      },
+      window = {
+        signature = {
+          height = 50,
+          width = 120,
+          border = "rounded",
+        }
+      }
+    },
+  },
   -- { -- Collection of various small independent plugins/modules
   --   "echasnovski/mini.nvim",
   --   config = function()
