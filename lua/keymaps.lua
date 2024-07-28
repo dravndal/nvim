@@ -24,12 +24,6 @@ vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("n", "<Tab>", ":bnext<CR>");
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>");
-
--- Background "plugin"
-vim.keymap.set("n", "<F8>", ":lua require('custom.utils.background').getBackground()<CR>")
-vim.keymap.set("n", "<F9>", ":lua require('custom.utils.background').changeBackground()<CR>")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -39,8 +33,8 @@ vim.keymap.set("n", "<F9>", ":lua require('custom.utils.background').changeBackg
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
@@ -109,6 +103,26 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if vim.tbl_contains({ 'null-ls' }, client.name) then  -- blacklist lsp
+      return
+    end
+    require("lsp_signature").on_attach({
+      bind = true,
+      handler_opts = {
+        border = "rounded",
+      },
+      hint_enable = false,
+      floating_window = true, -- virtual text or float window
+      hint_prefix = '',
+    }, bufnr)
+  end,
+})
+
+-- If you enter a buffer with a .git directory, change the working directory to the root of the git repo
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function(ctx)
     local root = vim.fs.root(ctx.buf, {".git", "Makefile"})

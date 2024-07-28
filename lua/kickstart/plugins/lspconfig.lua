@@ -33,7 +33,7 @@ return {
 					map("<leader>rn", "<cmd>Lspsaga rename<CR>", "[R]e[n]ame")
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 					map("K", "<cmd>Lspsaga hover_doc <CR>", "Hover Documentation")
-					map("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+					map("<C-k>", require("lsp_signature").toggle_float_win, "Signature Documentation")
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -140,9 +140,7 @@ return {
 	{
 		"nvimdev/lspsaga.nvim",
 		event = "LspAttach",
-		config = function()
-			require("lspsaga").setup({})
-		end,
+    opts = {},
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons" },
 		},
@@ -151,7 +149,5 @@ return {
     "ray-x/lsp_signature.nvim",
      event = "VeryLazy",
      opts = {},
-     config = function(_, opts) require'lsp_signature'.setup(opts) end
   }
 }
--- vim: ts=2 sts=2 sw=2 et
