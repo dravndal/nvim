@@ -29,7 +29,7 @@ return {
 							"filename_first",
 						},
 						prompt_prefix = ' 󰍉 ',
-						selection_caret = '  ',
+						selection_caret = '   ',
 					},
 				},
 				extensions = {

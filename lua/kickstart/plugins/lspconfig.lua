@@ -110,6 +110,7 @@ return {
 									environment = {
 										includePaths = {
 											"vendor/",
+											"/home/danielr/Work/Projects/corepublish/cplib/vendor/",
 											"/home/danielr/Work/Projects/corepublish/cplib/",
 											"/home/danielr/Work/Projects/corepublish/corepublish/",
 										},
