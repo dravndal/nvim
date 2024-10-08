@@ -45,4 +45,10 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Configure the border for vim.lsp.buf.signature_help
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = "rounded", -- You can use other border styles like "single", "double", "shadow"
+  }
+)
 -- vim: ts=2 sts=2 sw=2 et

@@ -20,28 +20,15 @@ return {
 
 					map("gd", "<cmd>Lspsaga goto_definition<CR>", "[G]oto [D]efinition")
 					map("gh", "<cmd>Lspsaga finder <CR>", "Find all uses")
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("<space>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 					map("<leader>gd", "<cmd>Lspsaga peek_definition<CR>", "Peak definition")
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 					map("<leader>so", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-					map(
-						"<leader>ws",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
-					)
 					map("<leader>rn", "<cmd>Lspsaga rename<CR>", "[R]e[n]ame")
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
 					map("K", "<cmd>Lspsaga hover_doc <CR>", "Hover Documentation")
 					map("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-						map("<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-						end, "[T]oggle Inlay [H]ints")
-					end
 				end,
 			})
 
@@ -50,7 +37,6 @@ return {
 			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -101,7 +87,7 @@ return {
 						-- certain features of an LSP (for example, turning off formatting for tsserver)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
-						require("lspconfig").tsserver.setup({
+						require("lspconfig").ts_ls.setup({
 							single_file_support = true,
 						})
 						require("lspconfig").intelephense.setup({
@@ -110,7 +96,7 @@ return {
 									environment = {
 										includePaths = {
 											"vendor/",
-											"/home/danielr/Work/Projects/corepublish/cplib/vendor/",
+											"/home/danielr/Work/Projects/corepublish/cplib/src/",
 											"/home/danielr/Work/Projects/corepublish/cplib/",
 											"/home/danielr/Work/Projects/corepublish/corepublish/",
 										},
@@ -141,7 +127,12 @@ return {
 	{
 		"nvimdev/lspsaga.nvim",
 		event = "LspAttach",
-		opts = {},
+		opts = {
+			symbol_in_winbar = {
+				delay = 100,
+				separator = ' › '
+			}
+		},
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons" },
 		},

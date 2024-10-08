@@ -6,8 +6,8 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
@@ -53,6 +53,7 @@ vim.keymap.set("v", ">", ">gv")
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set({'n','t'}, '<space>t', '<cmd>Lspsaga term_toggle<CR>')
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -130,6 +131,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function(ctx)
     local root = vim.fs.root(ctx.buf, {".git", "Makefile"})
     if root then vim.uv.chdir(root) end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+  pattern = "*/doc/*.txt",
+  callback = function()
+      vim.bo.filetype = 'help'
   end,
 })
 
