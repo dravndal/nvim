@@ -59,7 +59,7 @@ return {
 			vim.keymap.set("n", "<leader>cp", function()
 				require("telescope.builtin").find_files({
 					winblend = 10,
-					search_dirs = { ".", "/home/danielr/Work/Projects/corepublish/" },
+					search_dirs = { ".", "/home/danielr/corepublish/" },
 					additional_args = { "--no-ignore-vcs", "-F", "-Tmarkdown" },
 					hidden = true,
 				})
@@ -68,7 +68,7 @@ return {
 			vim.keymap.set("n", "<leader>sc", function()
 				require("telescope.builtin").live_grep({
 					winblend = 10,
-					search_dirs = { ".", "/home/danielr/Work/Projects/corepublish/" },
+					search_dirs = { ".", "/home/danielr/corepublish/" },
 					additional_args = { "--no-ignore-vcs", "-F", "-Tmarkdown" },
 				})
 			end, {})
@@ -106,7 +106,7 @@ return {
 			end
 
 			local function directory_picker()
-				local root_dir = "/home/danielr/Work/Projects"
+				local root_dir = "/home/danielr/public_html/devel/"
 
 				local results = {}
 				local job_output = vim.fn.systemlist('find "' .. root_dir .. '" -maxdepth 1 -type d')
