@@ -126,11 +126,7 @@ return {
       highlight = {
         use_nvim_cmp_as_default = true,
       },
-      keymap = {
-        accept = '<Tab>',
-        select_prev = { '<Up>', '<C-j>', '<C-p>' },
-        select_next = { '<Down>', '<C-k>', '<C-n>' },
-      },
+      keymap = 'default',
 
       accept = {
         auto_brackets = {

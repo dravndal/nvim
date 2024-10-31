@@ -4,6 +4,8 @@ vim.opt.relativenumber = true
 vim.opt.belloff = "all"
 vim.opt.cmdheight = 0
 vim.opt.inccommand = "split"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
