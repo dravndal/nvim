@@ -4,9 +4,6 @@ return {
     build = ":TSUpdate",
     lazy = false,
     opts = {
-      ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc", "php", "phpdoc", "typescript", "javascript" },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = { "ruby" },

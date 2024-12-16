@@ -96,9 +96,9 @@ return {
 									environment = {
 										includePaths = {
 											"vendor/",
-											"/home/danielr/Work/Projects/corepublish/cplib/src/",
 											"/home/danielr/Work/Projects/corepublish/cplib/",
 											"/home/danielr/Work/Projects/corepublish/corepublish/",
+											"/home/danielr/Work/Projects/corepublish/sitecomponents/",
 										},
 									},
 									files = {
