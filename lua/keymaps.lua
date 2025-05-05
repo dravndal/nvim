@@ -97,6 +97,19 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		if vim.bo.filetype ~= "php" then
+-- 			require("conform").format({ async = true }, function(err, did_edit)
+-- 				if err then
+-- 					print("Conform formatting error: " .. err)
+-- 				end
+-- 			end)
+-- 		end
+-- 	end,
+-- })
+
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",
 	callback = function()
