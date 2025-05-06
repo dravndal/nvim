@@ -43,6 +43,7 @@ return {
 					},
 				},
 				cssls = {},
+				tailwindcss = {},
 				html = {
 					filetypes = {
 						"html",

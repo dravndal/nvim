@@ -58,7 +58,6 @@ vim.keymap.set("n", "<bs>", "<<", {})
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set({ "n", "t" }, "<space>t", "<cmd>Lspsaga term_toggle<CR>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
