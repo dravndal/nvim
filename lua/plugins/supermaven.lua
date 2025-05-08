@@ -1,10 +1,10 @@
 return {
 	{
-		-- "supermaven-inc/supermaven-nvim",
-		-- config = function()
-		-- 	require("supermaven-nvim").setup({
-		-- 		ignore_filetypes = { ".*", ".env" },
-		-- 	})
-		-- end,
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({
+				ignore_filetypes = { ".*", ".env" },
+			})
+		end,
 	},
 }
