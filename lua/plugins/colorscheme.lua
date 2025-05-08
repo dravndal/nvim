@@ -11,6 +11,7 @@ return {
 	},
 	{
 		"rose-pine/neovim",
+		enabled = false,
 		name = "rose-pine",
 		opts = {
 			variant = "moon",
@@ -19,4 +20,22 @@ return {
 			},
 		},
 	},
+	{
+		"Mofiqul/vscode.nvim",
+		name = 'vscode',
+		enabled = false,
+		opts = {
+			transparent = true,
+		}
+	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		name = "cyberdream",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+			cache = true,
+		}
+	}
 }
