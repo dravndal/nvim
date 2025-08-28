@@ -1,9 +1,9 @@
 return {
 	{
 		"saghen/blink.cmp",
-		lazy = false, -- lazy loading handled internally
+		event = "InsertEnter",
 		enabled = true,
-		version = "v0.*",
+		version = "v1.*",
 		dependencies = { "rafamadriz/friendly-snippets" },
 
 		opts = {
@@ -13,7 +13,7 @@ return {
 			keymap = {
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<CR>"] = { "select_and_accept", "fallback" },
-				["<C-e>"] = { "hide" },
+				["<C-e>"] = { "hide", "show" },
 				["<C-p>"] = { "select_prev", "fallback" },
 				["<C-n>"] = { "select_next", "fallback" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
@@ -22,7 +22,7 @@ return {
 
 			completion = {
 				menu = {
-					border = "rounded",
+					border = "single",
 				},
 
 				accept = {
@@ -33,10 +33,10 @@ return {
 
 				documentation = {
 					auto_show = true,
-					auto_show_delay_ms = 100,
+					auto_show_delay_ms = 300,
 
 					window = {
-						border = "rounded",
+						border = "single",
 					},
 				},
 			},
@@ -45,7 +45,7 @@ return {
 				enabled = true,
 
 				window = {
-					border = "rounded",
+					border = "single",
 				},
 			},
 		},
