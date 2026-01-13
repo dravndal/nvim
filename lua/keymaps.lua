@@ -9,6 +9,9 @@ vim.keymap.set("n", "[d", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to previous [D]iagnostic message" })
 
+vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle virtual<CR>", { silent = true })
+vim.keymap.set("n", "<leader>ss", "<cmd>SupermavenToggle<CR>", { silent = true })
+
 vim.keymap.set("n", "]d", function()
 	vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next [D]iagnostic message" })
@@ -93,19 +96,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 		vim.cmd("tabdo wincmd =")
 	end,
 })
-
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
--- 	pattern = "*",
--- 	callback = function()
--- 		if vim.bo.filetype ~= "php" then
--- 			require("conform").format({ async = true }, function(err, did_edit)
--- 				if err then
--- 					print("Conform formatting error: " .. err)
--- 				end
--- 			end)
--- 		end
--- 	end,
--- })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",

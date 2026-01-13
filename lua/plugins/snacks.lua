@@ -48,7 +48,7 @@ return {
 				"",
 			},
 			{
-				"gI",
+				"gi",
 				function()
 					Snacks.picker.lsp_implementations()
 				end,

@@ -41,16 +41,16 @@ return {
 			layouts = {
 				{
 					elements = {
-						{ id = "scopes", size = 0.5 },
+						{ id = "scopes",  size = 0.5 },
 						{ id = "watches", size = 0.2 },
-						{ id = "stacks", size = 0.3 },
+						{ id = "stacks",  size = 0.3 },
 					},
 					size = 40,
 					position = "left",
 				},
 				{
 					elements = {
-						{ id = "repl", size = 0.5 },
+						{ id = "repl",    size = 0.5 },
 						{ id = "console", size = 0.5 },
 					},
 					size = 10,
@@ -112,7 +112,8 @@ return {
 					vim.ui.select(valid_dlls, {
 						prompt = "Select DLL to debug:",
 						format_item = function(item)
-							return vim.fn.fnamemodify(item, ":t") .. " (" .. vim.fn.fnamemodify(item, ":h") .. ")"
+							return vim.fn.fnamemodify(item, ":t") ..
+							    " (" .. vim.fn.fnamemodify(item, ":h") .. ")"
 						end,
 					}, function(choice)
 						coroutine.resume(dap_run_co, choice)
@@ -145,7 +146,8 @@ return {
 		local debug_state = { terminal_buf = nil, terminal_win = nil, original_win = nil }
 
 		local function is_valid_func_project(dir)
-			return vim.fn.filereadable(dir .. "/host.json") == 1 and #vim.fn.glob(dir .. "/*.csproj", true, true) > 0
+			return vim.fn.filereadable(dir .. "/host.json") == 1 and
+			    #vim.fn.glob(dir .. "/*.csproj", true, true) > 0
 		end
 
 		local function start_azure_func_host()
@@ -183,7 +185,9 @@ return {
 			debug_state.terminal_buf = vim.api.nvim_create_buf(false, true)
 			vim.api.nvim_buf_call(debug_state.terminal_buf, function()
 				vim.fn.termopen(
-					"cd '" .. project_dir .. "' && func host start --port " .. port .. " --dotnet-isolated-debug"
+					"cd '" ..
+					project_dir ..
+					"' && func host start --port " .. port .. " --dotnet-isolated-debug"
 				)
 			end)
 			vim.notify("Started Azure Func Host on port " .. port, vim.log.levels.INFO)
@@ -238,13 +242,15 @@ return {
 							vim.log.levels.ERROR
 						)
 					else
-						vim.notify("Jump Request Failed: " .. (err.message or "Unknown"), vim.log.levels.ERROR)
+						vim.notify("Jump Request Failed: " .. (err.message or "Unknown"),
+							vim.log.levels.ERROR)
 					end
 					return
 				end
 
 				if not response.targets or #response.targets == 0 then
-					vim.notify("No executable code found on line " .. target_line, vim.log.levels.WARN)
+					vim.notify("No executable code found on line " .. target_line,
+						vim.log.levels.WARN)
 					return
 				end
 
@@ -255,7 +261,8 @@ return {
 					targetId = target_id,
 				}, function(err_goto, _)
 					if err_goto then
-						vim.notify("Jump Execution Failed: " .. err_goto.message, vim.log.levels.ERROR)
+						vim.notify("Jump Execution Failed: " .. err_goto.message,
+							vim.log.levels.ERROR)
 					else
 						-- Optional: Silent success or minimal notification
 						-- vim.notify("Jumped to line " .. target_line, vim.log.levels.INFO)
@@ -288,9 +295,6 @@ return {
 
 		vim.keymap.set("n", "<Leader>du", dapui.toggle, { desc = "DAP: Toggle UI" })
 		vim.keymap.set({ "n", "v" }, "<Leader>de", dapui.eval, { desc = "DAP: Eval Expression" })
-		vim.keymap.set({ "n", "v" }, "K", function()
-			require("dap.ui.widgets").hover()
-		end, { desc = "DAP: Hover Variable" })
 
 		vim.keymap.set("n", "<Leader>dt", dap.terminate, { desc = "DAP: Terminate" })
 		vim.keymap.set("n", "<Leader>dq", cleanup_debug, { desc = "DAP: Cleanup & Quit" })
