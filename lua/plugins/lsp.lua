@@ -9,7 +9,17 @@ return {
 		config = function()
 			require("blink.cmp").setup({
 				sources = {
-					default = { "lsp", "snippets", "path", "buffer" },
+					default = { "lsp", "easy-dotnet", "snippets", "path", "buffer" },
+
+					providers = {
+						["easy-dotnet"] = {
+							name = "easy-dotnet",
+							enabled = true,
+							module = "easy-dotnet.completion.blink",
+							score_offset = 10000,
+							async = true,
+						},
+					},
 				},
 				appearance = {
 					nerd_font_variant = "mono",
@@ -65,7 +75,8 @@ return {
 			-- Remove background from diagnostic virtual text
 			local function customize_diagnostic_highlights()
 				for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
-					vim.api.nvim_set_hl(0, "DiagnosticVirtualText" .. type, { link = "Diagnostic" .. type })
+					vim.api.nvim_set_hl(0, "DiagnosticVirtualText" .. type,
+						{ link = "Diagnostic" .. type })
 				end
 			end
 			customize_diagnostic_highlights()
@@ -75,14 +86,10 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client:supports_method("textDocument/documentColor") then
-						pcall(vim.lsp.document_color.enable, true, event.buf)
-					end
-
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
-						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+						vim.keymap.set(mode, keys, func,
+							{ buffer = event.buf, desc = "LSP: " .. desc })
 					end
 					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -110,6 +117,7 @@ return {
 				"html",
 				"emmet_ls",
 				"intelephense",
+				"rust_analyzer",
 			})
 		end,
 		version = "1.*",

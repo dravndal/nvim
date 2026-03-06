@@ -20,4 +20,16 @@ return {
 			cache = true,
 		},
 	},
+	{
+		"samharju/synthweave.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"2giosangmitom/nightfall.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{ "EdenEast/nightfox.nvim" } -- lazy
 }

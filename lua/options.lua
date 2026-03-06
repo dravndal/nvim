@@ -1,9 +1,8 @@
 -- Make line numbers default
-vim.o.relativenumber = true
-vim.opt.number = true
+vim.o.relativenumber = false
+vim.opt.number = false
 vim.o.belloff = "all"
 vim.o.cmdheight = 1
-vim.opt.statuscolumn = "%l  "
 vim.o.cursorline = true
 vim.o.winborder = "single"
 vim.o.showmode = false
