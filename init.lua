@@ -7,4 +7,4 @@ require("options")
 -- [[ Basic Keymaps ]]
 require("keymaps")
 
-vim.cmd("colorscheme cyberdream")
+vim.cmd("colorscheme nightfall")

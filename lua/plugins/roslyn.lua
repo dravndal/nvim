@@ -13,6 +13,7 @@ return {
 				lsp = {
 					enabled = true,
 					roslynator_enabled = true,
+					set_fold_expr = false,
 					easy_dotnet_analyzer_enabled = true,
 					analyzer_assemblies = {},
 					config = {},
